@@ -1,0 +1,63 @@
+.drum-pad {
+  margin: $xxs-size;
+  padding: $xs-size;
+  background-color: $grey;
+  user-select: none; // makes text unhighlightable
+  width: 100px;
+  height: 100px;
+  box-shadow: 0px 3px 2px 0px #242121;
+  @extend .box-style;
+}
+
+.drum-machine {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: darken($grey, 30%);
+  @extend .box-style;
+
+  &__keyboard {
+    justify-content: center;
+    margin: $s-size;
+    background-color: lighten($grey, 10%);
+    @extend .box-style;
+  }
+
+  &__settings {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: $s-size;
+  }
+}
+
+.drum-keyboard {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(3, auto);
+}
+
+#display {
+  background-color: $grey;
+  line-height: $l-size;
+  height: $l-size;
+  width: 13rem;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @extend .box-style;
+}
+
+@media only screen and (max-width: $desktop-breakpoint) {
+  // mobile css in here
+  .drum-pad {
+      width: 50px;
+      height: 50px;
+  }
+}
+
+.box-style {
+  border-radius: $xxs-size;
+  border: 1px solid black;
+}

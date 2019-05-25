@@ -1,0 +1,34 @@
+:root {
+  --main-color: #d3c0f9;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: $dark-grey;
+    font-family: Helvetica, Arial,sans-serif;
+    font-size: $m-size;
+    line-height: 1.6;
+}
+
+h1, p {
+  font-family: Lato;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box; //when setting the height/width of an item it takes into account the padding/border size aswell to get that size specified 
+  }
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    font-weight:bold;
+}
