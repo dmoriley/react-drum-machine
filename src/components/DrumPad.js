@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from "prop-types";
 import classNames from 'classnames';
-import {StoreContext} from './StoreProvider';
+import { DrumMachineContext } from '../../index';
+
 
 const DrumPad = ({ src, label, boundKey, classes = [] }) => {
-  const { state, actions, dispatch } = useContext(StoreContext);
+  const { state, actions, dispatch } = useContext(DrumMachineContext);
   const audioEl = useRef(null);
   const [onClickStyle, setOnClickStyle] = useState({});
 

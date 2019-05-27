@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DrumKeyboard from './DrumKeyboard';
-import {StoreContext} from './StoreProvider';
+import { DrumMachineContext } from '../../index';
 
 // the nested syntax comes from https://github.com/cssinjs/jss-nested which is built into materialUI
 // the $rule refers to property on same stylesheet, so in this case the same object and will create the css nested
@@ -27,7 +27,7 @@ const styles = () => ({
 });
 
 const DrumMachine = ({classes}) => {
-  const { state, actions, dispatch } = useContext(StoreContext);
+  const { state, actions, dispatch } = useContext(DrumMachineContext);
 
   function handlePowerChange() {
     dispatch(actions.togglePower());

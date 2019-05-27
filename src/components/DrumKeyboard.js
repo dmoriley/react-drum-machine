@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from "prop-types";
 import audio from'../resources/audio-sources';
 import DrumPad from './DrumPad';
-import {StoreContext} from './StoreProvider';
+import { DrumMachineContext } from '../../index';
 
 const DrumKeyboard = () => {
-  const { state } = useContext(StoreContext);
+  const { state } = useContext(DrumMachineContext);
   return (
     <div className="drum-keyboard">
       { 
