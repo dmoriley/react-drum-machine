@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DrumKeyboard from './DrumKeyboard';
-import { DrumMachineContext } from '../../index';
+import { DrumMachineContext } from '../index';
 
 // the nested syntax comes from https://github.com/cssinjs/jss-nested which is built into materialUI
 // the $rule refers to property on same stylesheet, so in this case the same object and will create the css nested
@@ -26,7 +26,7 @@ const styles = () => ({
   colorChecked: {},
 });
 
-const DrumMachine = ({classes}) => {
+const DrumMachine = ({ classes }) => {
   const { state, actions, dispatch } = useContext(DrumMachineContext);
 
   function handlePowerChange() {
@@ -49,18 +49,19 @@ const DrumMachine = ({classes}) => {
         </div>
         <div className="drum-machine__settings">
           <p id="display">{state.label}</p>
-          <FormControlLabel 
+          <FormControlLabel
             control={
               <Switch
                 color={'primary'}
                 onChange={handlePowerChange}
-                checked={state.power}/>
+                checked={state.power}
+              />
             }
             label={'Power'}
           />
-          
+
           {/* material-ui gives each property on classes a unique custom classname cooresponding to the css parsed in withStyles*/}
-          <FormControlLabel 
+          <FormControlLabel
             control={
               <Switch
                 color={'secondary'}
@@ -75,7 +76,13 @@ const DrumMachine = ({classes}) => {
             }
             label={'Audio Source'}
           />
-          <input type="range" list="tickmarks" value={state.volume*100} name="volume" onChange={handleVolumeChange}/>
+          <input
+            type="range"
+            list="tickmarks"
+            value={state.volume * 100}
+            name="volume"
+            onChange={handleVolumeChange}
+          />
           <datalist id="tickmarks">
             <option value="0" />
             <option value="10" />
@@ -93,6 +100,6 @@ const DrumMachine = ({classes}) => {
       </div>
     </div>
   );
-}
+};
 
 export default withStyles(styles)(DrumMachine);

@@ -1,11 +1,10 @@
 # Drum Machine
 
-## To run build script
- - Create src folder at root and add index.js + main content off web app
- - Update import paths inside of index.js to reflect new location
- - if using sass for styles run *npm install node-sass* to add node sass to the project
- - Create a public folder at root of project and put index.html inside
- - After installing all dependencies run *npm run build* which will create a build folder
- - Run local server (could be serve, http-server, live-server...) on folder build
+## Local development
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/dmo-drum-machine)
+- run `npm start`
+
+## Production build
+
+- run `npm build` to create build folder then `npm serve` to open live server
+- OR run `npm build:serve` to combine the two above steps
