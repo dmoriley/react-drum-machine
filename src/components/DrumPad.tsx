@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { DrumMachineContext } from '../index';
+interface IProps {
+  label: string;
+  src: string;
+  boundKey?: string;
+  classes?: string[];
+}
 
-const DrumPad = ({ src, label, boundKey, classes = [] }) => {
+const DrumPad: React.FC<IProps> = ({ src, label, boundKey, classes = [] }) => {
   const { state, actions, dispatch } = useContext(DrumMachineContext);
-  const audioEl = useRef(null);
+  const audioEl = useRef<HTMLAudioElement>(null);
   const [onClickStyle, setOnClickStyle] = useState({});
 
   useEffect(() => {
@@ -18,9 +23,12 @@ const DrumPad = ({ src, label, boundKey, classes = [] }) => {
   const padClicked = () => {
     if (state.power) {
       // check if the machine is powered on
-      audioEl.current.volume = state.volume;
-      audioEl.current.currentTime = 0;
-      audioEl.current.play();
+      if (audioEl.current) {
+        audioEl.current.volume = state.volume;
+        audioEl.current.currentTime = 0;
+        audioEl.current.play();
+      }
+
       dispatch(actions.setLabel(label));
     }
     setOnClickStyle({
@@ -35,7 +43,7 @@ const DrumPad = ({ src, label, boundKey, classes = [] }) => {
   };
 
   function handleKeyDown(e) {
-    if (e.key.toLowerCase().trim() === boundKey.toLowerCase().trim()) {
+    if (e.key.toLowerCase().trim() === boundKey?.toLowerCase().trim()) {
       padClicked();
     }
   }
@@ -47,21 +55,15 @@ const DrumPad = ({ src, label, boundKey, classes = [] }) => {
       id={label}
       onClick={padClicked}
     >
-      {boundKey.toUpperCase() || label}
+      {boundKey?.toUpperCase() || label}
       <audio
-        id={boundKey.toUpperCase()}
+        id={boundKey?.toUpperCase()}
         className="clip"
         ref={audioEl}
         src={src}
       ></audio>
     </div>
   );
-};
-DrumPad.propTypes = {
-  label: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  boundKey: PropTypes.string,
-  classes: PropTypes.array,
 };
 
 export default DrumPad;

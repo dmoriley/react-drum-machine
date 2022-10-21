@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
-import './resources/prototypes';
+import { createRoot } from 'react-dom/client';
 import './styles/styles.scss';
 import reducer from './state-management/reducer';
 import actions from './state-management/actions';
@@ -8,7 +7,12 @@ import DrumMachine from './components/DrumMachine';
 import StoreProvider, { StoreContext } from './components/StoreProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const initialState = { power: true, volume: 1, audioMap: 'yells', label: '' };
+export const initialState = {
+  power: true,
+  volume: 1,
+  audioMap: 'yells',
+  label: '',
+};
 
 const App = () => (
   <StoreProvider settings={{ initialState, actions, reducer }}>
@@ -20,4 +24,6 @@ const App = () => (
 
 export const DrumMachineContext = StoreContext;
 
-render(<App />, document.querySelector('#root'));
+const container = document.querySelector('#root');
+const root = createRoot(container!);
+root.render(<App />);

@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, Fragment } from 'react';
 import audio from '../resources/audio-sources';
 import DrumPad from './DrumPad';
 import { DrumMachineContext } from '../index';
@@ -10,16 +9,14 @@ const DrumKeyboard = () => {
     <div className="drum-keyboard">
       {audio[state.audioMap] ? (
         audio[state.audioMap].map((i, index) => (
-          <React.Fragment key={index}>
-            {' '}
-            {/* Fragment is like ngContainer, doesnt add a DOM node */}
+          <Fragment key={index}>
             <DrumPad
               classes={[]}
               label={i.label}
               src={i.src}
               boundKey={i.boundKey}
             />
-          </React.Fragment>
+          </Fragment>
         ))
       ) : (
         <p>No audio supplied</p>
