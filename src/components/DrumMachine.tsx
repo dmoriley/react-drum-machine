@@ -1,32 +1,9 @@
 import React, { useContext } from 'react';
-import Switch from '@material-ui/core/Switch';
-import { withStyles } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import DrumKeyboard from './DrumKeyboard';
 import { DrumMachineContext } from '../index';
+import Switch from 'react-switch';
 
-// the nested syntax comes from https://github.com/cssinjs/jss-nested which is built into materialUI
-// the $rule refers to property on same stylesheet, so in this case the same object and will create the css nested
-// if colorBar/colorChecked were not in the styles object the nesting would not work because the rule would refer to nothing
-const styles = () => ({
-  colorSwitchBase: {
-    color: purple[500],
-    '& + $colorBar': {
-      backgroundColor: purple[500],
-    },
-    '&$colorChecked': {
-      color: purple[500],
-      '& + $colorBar': {
-        backgroundColor: purple[500],
-      },
-    },
-  },
-  colorBar: {},
-  colorChecked: {},
-});
-
-const DrumMachine = ({ classes }) => {
+const DrumMachine = () => {
   const { state, actions, dispatch } = useContext(DrumMachineContext);
 
   function handlePowerChange() {
@@ -49,33 +26,38 @@ const DrumMachine = ({ classes }) => {
         </div>
         <div className="drum-machine__settings">
           <p id="display">{state.label}</p>
-          <FormControlLabel
-            control={
-              <Switch
-                color={'primary'}
-                onChange={handlePowerChange}
-                checked={state.power}
-              />
-            }
-            label={'Power'}
-          />
-
-          {/* material-ui gives each property on classes a unique custom classname cooresponding to the css parsed in withStyles*/}
-          <FormControlLabel
-            control={
-              <Switch
-                color={'secondary'}
-                classes={{
-                  switchBase: classes.colorSwitchBase,
-                  checked: classes.colorChecked,
-                  bar: classes.colorBar,
-                }}
-                onChange={handleAudioMapChange}
-                checked={state.audioMap === 'yells' ? true : false}
-              />
-            }
-            label={'Audio Source'}
-          />
+          <label>
+            <Switch
+              id="power"
+              onColor="#3d4779"
+              offColor="#252525"
+              onHandleColor="#3f51b5"
+              onChange={handlePowerChange}
+              checked={state.power}
+              uncheckedIcon={false}
+              checkedIcon={false}
+              height={15}
+              width={35}
+              handleDiameter={22}
+            />
+            <span>Power</span>
+          </label>
+          <label>
+            <Switch
+              id="audio-source"
+              onColor="#9d27b0"
+              offColor="#252525"
+              onHandleColor="#992e4a"
+              onChange={handleAudioMapChange}
+              checked={state.audioMap === 'yells' ? true : false}
+              uncheckedIcon={false}
+              checkedIcon={false}
+              height={15}
+              width={35}
+              handleDiameter={22}
+            />
+            <span>Audio Source</span>
+          </label>
           <input
             type="range"
             list="tickmarks"
@@ -102,4 +84,4 @@ const DrumMachine = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(DrumMachine);
+export default DrumMachine;
