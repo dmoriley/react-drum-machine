@@ -5,7 +5,6 @@ import reducer from './state-management/reducer';
 import actions from './state-management/actions';
 import DrumMachine from './components/DrumMachine';
 import StoreProvider, { StoreContext } from './components/StoreProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 export const initialState = {
   power: true,
@@ -16,8 +15,6 @@ export const initialState = {
 
 const App = () => (
   <StoreProvider settings={{ initialState, actions, reducer }}>
-    <CssBaseline />{' '}
-    {/* used instead of normalize cause its included in material-ui */}
     <DrumMachine />
   </StoreProvider>
 );
