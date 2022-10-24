@@ -64,8 +64,12 @@ label {
 @media only screen and (max-width: $desktop-breakpoint) {
   // mobile css in here
   .drum-pad {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
+  }
+
+  .drum-machine {
+    flex-direction: column;
   }
 }
 
