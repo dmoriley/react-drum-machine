@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import classNames from 'classnames';
-import { DrumMachineContext } from '../index';
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { DrumMachineContext } from "../index";
 interface IProps {
   label: string;
   src: string;
@@ -14,9 +13,9 @@ const DrumPad: React.FC<IProps> = ({ src, label, boundKey, classes = [] }) => {
   const [onClickStyle, setOnClickStyle] = useState({});
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [state.power, state.audioMap]);
 
@@ -32,10 +31,10 @@ const DrumPad: React.FC<IProps> = ({ src, label, boundKey, classes = [] }) => {
       dispatch(actions.setLabel(label));
     }
     setOnClickStyle({
-      backgroundColor: state.power ? 'red' : '',
-      boxShadow: 'none',
-      position: 'relative',
-      top: '5px',
+      backgroundColor: state.power ? "red" : "",
+      boxShadow: "none",
+      position: "relative",
+      top: "5px",
     });
     setTimeout(() => {
       setOnClickStyle({});
@@ -48,10 +47,15 @@ const DrumPad: React.FC<IProps> = ({ src, label, boundKey, classes = [] }) => {
     }
   }
 
+  function combineClasses(cssClass: string, cssClassAr: string[] = []) {
+    cssClassAr.push(cssClass);
+    return cssClassAr.join(" ");
+  }
+
   return (
     <div
       style={onClickStyle}
-      className={classNames('drum-pad', classes)}
+      className={combineClasses("drum-pad", classes)}
       id={label}
       onClick={padClicked}
     >
